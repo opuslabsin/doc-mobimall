@@ -189,7 +189,7 @@ $('#toc').on('click', 'a', function() {
   <h1 id="introduction">Introduction</h1>
 <p>The app is connected with Woocommerce (WordPress) using REST APIs, the following documentation will guide you through the process to connect the app with your Woocommerce Store.</p>
 
-<h1 id="content">Content</h1>
+<h1 id="setting-up-your-wordpress">Setting up your wordpress</h1>
 <ol>
   <li>
     <h3 id="install-wordpress">Install Wordpress</h3>
@@ -213,35 +213,21 @@ $('#toc').on('click', 'a', function() {
       <li>WooCommerce 2.6+.</li>
       <li>WordPress 4.4+.</li>
       <li>You may access the API over either HTTP or HTTPS, but HTTPS is recommended where possible.</li>
-      <li>Pretty permalinks in Settings &gt; Permalinks so that the custom endpoints are supported. Default permalinks will not work. 
- <img src="images/3.1-rest-api-permalink-menu-highlight.png" alt="image-3-1" />
- <img src="images/3.2-rest-api-permalink-highlight.png" alt="image-3-2" /></li>
+      <li><strong>IMPORTANT</strong>: If your website uses <strong>https</strong> protocol i.e your website url is <strong>https</strong>://www.example.com, you will need to generate
+<strong>CONSUMER KEY</strong> and <strong>CONSUMER SECRET</strong>.
+Go to <code class="highlighter-rouge">WooCommerce</code> &gt; <code class="highlighter-rouge">Settings</code> &gt; <code class="highlighter-rouge">Advanced</code> &gt; <code class="highlighter-rouge">REST API</code> &gt; <code class="highlighter-rouge">ADD Key</code>. Copy both <strong>CONSUMER KEY</strong> and <strong>CONSUMER SECRET</strong>,
+these values will be required when we setup mobile application further in this document. You are not required to follow this step if your website uses <strong>http</strong> protocol.</li>
+      <li>Setup Pretty permalinks in Settings &gt; Permalinks so that the custom endpoints are supported. Default permalinks will not work.</li>
     </ul>
-  </li>
-  <li>
-    <h3 id="plugins">Plugins</h3>
+    <h1 align="center"> Step 1</h1>
+    <p align="center"><img src="images/3.1-rest-api-permalink-menu-highlight.png" /></p>
+    <h1 align="center"> Step 2</h1>
+    <p align="center"><img src="images/3.2-rest-api-permalink-highlight.png" /></p>
 
     <ul>
-      <li>
-        <p><strong>jwt-authentication-for-wp-rest-api</strong></p>
-
-        <p>You will find the file named <code class="highlighter-rouge">jwt-authentication-for-wp-rest-api.zip</code> in the package you downloaded from envato.
- It’s a plugin that enables <code class="highlighter-rouge">Authorization Header</code> based authentication for Woocommerce Rest APIs that we use in our app. You need to install this plugin on your wordpress. If you are not aware of how to install the wordpress plugin, follow the following steps:</p>
-        <ul>
-          <li>In your wordpress admin, go to <strong>Admin Menu</strong> &gt; <strong>Plugins</strong> &gt; <strong>Add New</strong> &gt; <strong>Upload Plugin</strong></li>
-          <li>Choose the file <code class="highlighter-rouge">jwt-authentication-for-wp-rest-api.zip</code></li>
-          <li>Click on <strong>Install Now</strong></li>
-          <li>Click on <strong>Activate Plugin</strong>
- <img src="images/4.0-jwt-plugin-location.png" alt="image-4-1" />
- <img src="images/4.1-plugin-step-1.png" alt="image-4-2" />
- <img src="images/4.2-plugin-step-2-upload-button.png" alt="image-4-3" />
- <img src="images/4.3-plugin-step-3-choose-file.png" alt="image-4-4" />
- <img src="images/4.4-plugin-step-4-install-now.png" alt="image-4-5" />
- <img src="images/4.5-plugin-step-5-activate.png" alt="image-4-6" /></li>
-        </ul>
-
-        <p>Along with above steps, you also need to ensure that you web serve(Apache/Nginx) supports <code class="highlighter-rouge">HTTP Authorization Header</code>. If you are using shared hosting and it has disabled the HTTP Authorization Header, then you need to enable it.
- To enable Authorization Header, please follow the following steps</p>
+      <li>You also need to ensure that you web serve(Apache/Nginx) supports <code class="highlighter-rouge">HTTP Authorization Header</code>. If you are using shared hosting and it has 
+disabled the HTTP Authorization Header, then you need to enable it.
+To enable Authorization Header, please follow the following steps
         <ul>
           <li>Login to your shared hosting</li>
           <li>Visit file manager and go to the root directory of your website.</li>
@@ -260,6 +246,25 @@ $('#toc').on('click', 'a', function() {
           </li>
         </ul>
       </li>
+    </ul>
+  </li>
+  <li>
+    <h3 id="plugins">Plugins</h3>
+
+    <ul>
+      <li>
+        <p><strong>mobile-ecommerce.zip (Required)</strong></p>
+
+        <p>You will find the file named <code class="highlighter-rouge">mobile-ecommerce.zip</code> in <code class="highlighter-rouge">wordpress-plugins</code> folder in the package you downloaded from envato.
+ It provides multiple capabilities to our app and is neccessary to install.
+ It enables <code class="highlighter-rouge">Authorization Header</code> based authentication for Woocommerce Rest APIs for websites that use <strong>http</strong> protocol. You need to install this plugin in your wordpress. If you are not aware of how to install the wordpress plugin, follow the following steps:</p>
+        <ul>
+          <li>In your wordpress admin, go to <strong>Admin Menu</strong> &gt; <strong>Plugins</strong> &gt; <strong>Add New</strong> &gt; <strong>Upload Plugin</strong></li>
+          <li>Choose the file <code class="highlighter-rouge">mobile-ecommerce.zip</code></li>
+          <li>Click on <strong>Install Now</strong></li>
+          <li>Click on <strong>Activate Plugin</strong></li>
+        </ul>
+      </li>
       <li>
         <p><strong>WooCommerce PayU India (Optional)</strong></p>
 
@@ -275,20 +280,24 @@ Follow the following link to install and setup this plugin:</p>
       </li>
     </ul>
   </li>
+</ol>
+
+<h1 id="mobile-app">Mobile App</h1>
+
+<ol>
   <li>
     <h3 id="install-nodejs">Install Node.js</h3>
     <p>You must have <strong>Node.js</strong> installed on your system to begin building our app. Please follow the following step if nodejs is not installed on your system. If already done, you can skip this step</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Install Node.js version 8 or above on your system. 
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Note: Install Node.js version 8 or above on your system. 
 </code></pre></div>    </div>
 
     <p>Download the Node.js as per your operating system from <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a>
 To ensure that you have correct version of nodejs installed, from the command line issue the following command</p>
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node -v
 </code></pre></div>    </div>
-    <p>If you see the string containing version number greater than 8, you are good to go. If you get `
-command not found error`, that means nodejs is not properly installed on your system. You’ll need to troubleshoot the problem.</p>
-    <h6 id="you--may-be-able-to-use-node-version-lessser-than-8-but-we-havent-tested-the-app-with-these-versions">*You  may be able to use node version lessser than 8 but we haven’t tested the app with these versions</h6>
+    <p>If you see the string containing version number greater than 8, you are good to go. If you get <code class="highlighter-rouge">command not found error</code>, that means nodejs is not properly installed on your system. You’ll need to troubleshoot the problem.</p>
+    <h6 id="you--may-be-able-to-use-node-version-lessser-than-8-but-we-havent-tested-the-app-with-these-versions"><strong>You  may be able to use node version lessser than 8 but we haven’t tested the app with these versions</strong></h6>
   </li>
   <li>
     <h3 id="install-ionic-and-cordova">Install ionic and cordova</h3>
@@ -299,8 +308,12 @@ command not found error`, that means nodejs is not properly installed on your sy
 
     <p>This will install the ionic and cordova programs on your system. To ensure that you have successfully installed both the programs, issue following command from the command line</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ionic -v &amp;&amp; cordova -v  If version number gets printed on the console, you are good to go. If you get `command not found error`, that means that these programs didn't get properly installed on your system. You'll need to troubleshoot the problem.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ionic -v &amp;&amp; cordova -v
 </code></pre></div>    </div>
+
+    <p>If version number gets printed on the console, you are good to go. If you get <code class="highlighter-rouge">command not found error</code>, that means that these programs didn’t get properly installed on your system. You’ll need to troubleshoot the problem.</p>
+
+    <p><strong>Make sure you do not accidentally install ionic-v4(beta)</strong></p>
   </li>
   <li>
     <h3 id="connect-the-app-with-your-woocommerce-store">Connect the app with your woocommerce store</h3>
@@ -318,10 +331,16 @@ command not found error`, that means nodejs is not properly installed on your sy
         <p><strong>Note: Replace www.example.com with your domain or IP address</strong></p>
       </li>
       <li>
-        <p><strong>adminUsername</strong> - This is the admin’s username of your wordpress website, that you use while loging in admin section</p>
+        <p><strong>consumerKey</strong> - Only set this if your website uses <strong>https</strong> protocol i.e your website url is like this <strong>https</strong>://www.example.com. This is the <strong>Consumer Key</strong> that you generated above while setting up <strong>REST APIs for Woocommerce</strong>. You may leave it blank if your website uses <strong>http</strong> protocol</p>
       </li>
       <li>
-        <p><strong>adminPassword</strong> - This is the admin’s password of your wordpress website, that you use while loging in admin section</p>
+        <p><strong>consumerSecret</strong> - Only set this if your website uses <strong>https</strong> protocol <strong>https</strong>://www.example.com. This is the <strong>Consumer Secret</strong> that you generated above while setting up <strong>REST APIs for Woocommerce</strong>. You may leave it blank if your website uses <strong>http</strong> protocol</p>
+      </li>
+      <li>
+        <p><strong>adminUsername</strong> - Only set this if your website uses <strong>http</strong> protocol <strong>http</strong>://www.example.com. This is the admin’s username of your wordpress website, that you use while loging in admin section. You may leave it blank if your website uses <strong>https</strong> protocol</p>
+      </li>
+      <li>
+        <p><strong>adminPassword</strong> - Only set this if your website uses <strong>http</strong> protocol <strong>http</strong>://www.example.com. This is the admin’s password of your wordpress website, that you use while loging in admin section. You may leave it blank if your website uses <strong>https</strong> protocol</p>
       </li>
       <li>
         <p><strong>paypalProduction</strong> - Use your Paypal’s PRODUCTION_CLIENT_ID. For more info, please visit <a href="https://ionicframework.com/docs/native/paypal/">https://ionicframework.com/docs/native/paypal/</a></p>
@@ -332,8 +351,40 @@ command not found error`, that means nodejs is not properly installed on your sy
       <li>
         <p><strong>payuSalt</strong>: Your PayUMoney salt</p>
       </li>
-      <li><strong>payuKey</strong>: Your PayUMoney key</li>
+      <li>
+        <p><strong>payuKey</strong>: Your PayUMoney key</p>
+      </li>
+      <li><strong>appName</strong>: You can change the home screen title of the app by setting this value. Default: MOBIMALL</li>
     </ol>
+
+    <p>Please make sure that you understand that you need to enter values for <strong>consumerKey</strong> and <strong>consumerSecret</strong> if your website uses <strong>https</strong>. And if your website uses <strong>http</strong>, you need to enter values for <strong>adminUsername</strong> and <strong>adminPassword</strong>.</p>
+  </li>
+  <li>
+    <h3 id="other-installations">Other Installations</h3>
+    <p>Ionic doesn’t bundle all of the tooling required to build an app, it relies on some additional SDKs and software provided by Apple and/or Google. It is good to read and follow the platform guides provided by Ionic to set up for each platorm you wish to work with
+ <a href="https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html">Android Platform Guide</a>
+ <a href="https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html">iOS Platform Guide</a>
+ You can do this at a later time, but you’ll need to set up the platform tooling before you can preview or emulate an application on a simulator or device.</p>
+  </li>
+  <li>
+    <h3 id="payumoney">PayUMoney:</h3>
+    <ul>
+      <li>Create an account on <a href="http://www.payumoney.com">PayUMoney</a></li>
+      <li>Setup Payumoney key and Salt in variables “payuKey” and “payuSalt” respectively in <code class="highlighter-rouge">src/app/app.config.ts</code> file.</li>
+    </ul>
+  </li>
+  <li>
+    <h3 id="paypal">PayPal</h3>
+    <ul>
+      <li>Setup paypal by creating account here: https://www.paypal.com/in/webapps/mpp/account-selection?pros=1and add keys.
+ <a href="http://support.berta.me/kb/online-shop/how-to-get-paypal-api-username-password-and-signature-information">How to Find the keys</a></li>
+      <li>Setup PayPal sandbox id in variable “paypalSandbox” in the following file: src/app/app.config.ts</li>
+    </ul>
+  </li>
+  <li>
+    <h3 id="deploy-app">Deploy App</h3>
+    <p>Deploying apps on Google Play Store and Apple App Store is out of the scope of this document.
+Kindly refer to this <a href="https://ionicframework.com/docs/intro/deploying/">guide</a> for further instructions.</p>
   </li>
 </ol>
 
@@ -357,7 +408,7 @@ Please raise an issue ticket at this link <a href="https://opuslabs.freshdesk.co
             <div class="row">
                 <div class="col-lg-12 footer">
                &copy;2018 Opus Labs. All rights reserved. <br />
- Site last generated: Aug 9, 2018 <br />
+ Site last generated: Aug 13, 2018 <br />
 <p><img src="images/company_logo_dark.png" alt="Company logo"/></p>
                 </div>
             </div>
