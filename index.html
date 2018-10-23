@@ -569,11 +569,26 @@ To ensure that you have correct version of nodejs installed, from the command li
     </ul>
   </li>
   <li>
-    <h3 id="other-installations">Other Installations</h3>
-    <p>Ionic doesn’t bundle all of the tooling required to build an app, it relies on some additional SDKs and software provided by Apple and/or Google. It is good to read and follow the platform guides provided by Ionic to set up for each platorm you wish to work with
-<a href="https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html">Android Platform Guide</a>
-<a href="https://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html">iOS Platform Guide</a>
-You can do this at a later time, but you’ll need to set up the platform tooling before you can preview or emulate an application on a simulator or device.</p>
+    <h3 id="build-app">Build App</h3>
+    <p>Since the app depends on various native capabilities we suggest you to check the app on physical device instead of checking it in browser.
+Once you have followed all the steps given above you can build the app for android and ios. But keep in mind that Ionic doesn’t bundle all of the tooling required to build an app, it relies on some additional SDKs and software provided by Apple and/or Google. You’ll need to set up the platform tooling before you can preview or emulate an application on a simulator or device.</p>
+
+    <p>Once done, you can run following command to run the app on your Android device:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &gt; ionic cordova run android
+</code></pre></div>    </div>
+
+    <p>To build the apk, run:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &gt; ionic cordova build android
+</code></pre></div>    </div>
+
+    <p>Simillarly for iOS, you can run:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &gt; ionic cordova build ios
+</code></pre></div>    </div>
+
+    <p>If you find the given information insufficient for you to successfully build or publish the app on app/play store. Please visit <a href="https://ionicframework.com/docs/intro/deploying/">https://ionicframework.com/docs/intro/deploying/</a> for indepth documentation.</p>
   </li>
   <li>
     <h3 id="payumoney">PayUMoney:</h3>
